@@ -1,13 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+import ToDo from './todo';
 import reportWebVitals from './reportWebVitals';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
+
+
+const counter=(state=0, action)=>{
+  switch(action.type){
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+} 
+const store= createStore(counter);
+const ToDoMain=()=>(
+  <div>
+    <ToDo
+      value={store.getState()}
+      onIncrement={()=>
+                    store.dispatch({
+                      type:'INCREMENT'
+                    })
+                  }
+      
+      onDecrement={()=>
+                    store.dispatch({
+                      type:'DECREMENT'
+                    })
+                  }
+    />
+  </div>
+
+)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={createStore(ToDoMain)}>
+    <ToDoMain/>
+  </Provider>,
   document.getElementById('root')
 );
 
