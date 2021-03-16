@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ToDo from './todo';
 import reportWebVitals from './reportWebVitals';
 import {createStore} from 'redux';
-import {Provider} from 'react-redux';
+import {Provider,connect} from 'react-redux';
 
 
 
@@ -19,10 +19,10 @@ const counter=(state=0, action)=>{
   }
 } 
 const store= createStore(counter);
-const ToDoMain=()=>(
+const ToDoMain=(props)=>(
   <div>
     <ToDo
-      value={store.getState()}
+      value={props.state}
       onIncrement={()=>
                     store.dispatch({
                       type:'INCREMENT'
@@ -37,13 +37,15 @@ const ToDoMain=()=>(
     />
   </div>
 
-)
+);
+const mapStateToProps=(state)=>({state:state});
+const MainComponent= connect(mapStateToProps)(ToDoMain);
 
 ReactDOM.render(
-  <Provider store={createStore(ToDoMain)}>
-    <ToDoMain/>
+  <Provider store={store}>
+    <MainComponent/>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

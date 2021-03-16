@@ -1,10 +1,7 @@
 import React from 'react';
 
-const ToDo= (value,
-            onIncrement,
-            onDecrement
-            )=>{
-    
+const ToDo = (props)=>{
+    const {value, onIncrement,onDecrement} = props;
     return(
         <>
         <div className="ui segment">
