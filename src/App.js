@@ -1,7 +1,8 @@
 import React from "react";
-import { Provider } from "redux";
+import { Provider } from "react-redux";
 import ToDoMain from "./todomain";
 import store from "./store";
+console.log(store);
 const App = () => {
   return (
     <>
@@ -11,3 +12,4 @@ const App = () => {
     </>
   );
 };
+export default App;

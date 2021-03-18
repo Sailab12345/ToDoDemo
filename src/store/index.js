@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from "react-redux";
+import { createStore, combineReducers } from "redux";
 import Reducer from "./reducer";
 
 const reducers = combineReducers({ counter: Reducer });
@@ -8,4 +8,4 @@ const configstore = () => {
   return store;
 };
 
-export default configstore;
+export default configstore();
