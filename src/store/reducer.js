@@ -1,12 +1,17 @@
-const counter = (state = 0, action) => {
+const initialState = {
+  cakes: 20
+};
+
+const cakereducer = (state = initialState, action) => {
   switch (action.type) {
-    case "INCREMENT":
-      return state + 1;
-    case "DECREMENT":
-      return state - 1;
+    case "BUY":
+      return {
+        ...state,
+        cakes: state.cakes - 1
+      };
     default:
       return state;
   }
 };
 
-export default counter;
+export default cakereducer;

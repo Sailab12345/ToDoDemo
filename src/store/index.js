@@ -1,11 +1,10 @@
-import { createStore, combineReducers } from "redux";
-import Reducer from "./reducer";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import Reducer from "../users/userreducer";
+import logger from "redux-logger";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+//const combinereducer = combineReducers({ cake: Reducer });
 
-const reducers = combineReducers({ counter: Reducer });
+const store = createStore(Reducer, composeWithDevTools(applyMiddleware(logger, thunk)));
 
-const configstore = () => {
-  const store = createStore(reducers);
-  return store;
-};
-
-export default configstore();
+export default store;
