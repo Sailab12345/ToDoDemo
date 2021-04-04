@@ -1,17 +1,25 @@
-const initialState = {
-  cakes: 20
+const initialstate = {
+  age: 20
 };
 
-const cakereducer = (state = initialState, action) => {
+const reducer = (state = initialstate, action) => {
+  const { newState } = { ...state };
   switch (action.type) {
-    case "BUY":
+    case "ADD_ASYNC":
       return {
         ...state,
-        cakes: state.cakes - 1
+        age: state.age + 1
+      };
+
+    case "DECREASE":
+      return {
+        ...state,
+        age: state.age - 1
       };
     default:
       return state;
   }
+  // return newState;
 };
 
-export default cakereducer;
+export default reducer;
